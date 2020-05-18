@@ -4,20 +4,20 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class PhotoListViewTile extends StatelessWidget {
   const PhotoListViewTile(
       {Key key,
-      @required this.context,
       @required this.title,
       @required this.subtitle,
       @required this.imageUrl,
       @required this.route,
-      @required this.isFavorite,
-      @required this.onFavorite})
+      this.showFavoriteIcon = false,
+      this.isFavorite = false,
+      this.onFavorite})
       : super(key: key);
 
-  final BuildContext context;
   final String title;
   final String subtitle;
   final String imageUrl;
   final Route route;
+  final bool showFavoriteIcon;
   final bool isFavorite;
   final Function onFavorite;
 
@@ -60,15 +60,18 @@ class PhotoListViewTile extends StatelessWidget {
                         )),
                     PhotoListViewTileTitle(
                         context: context, title: title, subtitle: subtitle),
-                    Positioned(
-                      top: 15.0,
-                      right: 15.0,
-                      child: GestureDetector(
-                        onTap: onFavorite,
-                        child: Icon(
-                          FontAwesomeIcons.solidHeart,
-                          size: 20.0,
-                          color: isFavorite ? Colors.red : Colors.white,
+                    Visibility(
+                      visible: showFavoriteIcon,
+                      child: Positioned(
+                        top: 15.0,
+                        right: 15.0,
+                        child: GestureDetector(
+                          onTap: onFavorite,
+                          child: Icon(
+                            FontAwesomeIcons.solidHeart,
+                            size: 20.0,
+                            color: isFavorite ? Colors.red : Colors.white,
+                          ),
                         ),
                       ),
                     )

@@ -71,10 +71,10 @@ class SitesFoodList extends StatelessWidget {
                         return Visibility(
                           visible: showTile,
                           child: PhotoListViewTile(
-                              context: context,
                               title: activity.name,
                               subtitle: activity.type,
                               imageUrl: activity.imageUrl,
+                              showFavoriteIcon: true,
                               isFavorite: isFavorite,
                               onFavorite: () async {
                                 await FavoritesService.toggleFavorite(
