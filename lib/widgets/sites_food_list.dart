@@ -5,8 +5,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SitesFoodList extends StatelessWidget {
   final DestinationModel destination;
+  final String category;
 
-  const SitesFoodList({Key key, this.destination}) : super(key: key);
+  const SitesFoodList({Key key, this.destination, this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,7 @@ class SitesFoodList extends StatelessWidget {
               .collection('destinations')
               .document(destinationId)
               .collection('activities')
+              .where('category', isEqualTo: category)
               .orderBy('name')
               .snapshots(),
           builder: (context, snapshot) {
