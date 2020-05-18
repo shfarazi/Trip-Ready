@@ -1,4 +1,3 @@
-import 'package:capstone/services/favorites_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/tripready.dart';
@@ -77,7 +76,7 @@ class SitesFoodList extends StatelessWidget {
                               showFavoriteIcon: true,
                               isFavorite: isFavorite,
                               onFavorite: () async {
-                                await FavoritesService.toggleFavorite(
+                                await DataService.toggleFavorite(
                                     destination.documentID,
                                     activity.documentID);
                               },

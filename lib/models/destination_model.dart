@@ -19,7 +19,6 @@ class DestinationModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'documentID': documentID,
       'imageUrl': imageUrl,
       'city': city,
       'country': country,

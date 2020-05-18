@@ -19,8 +19,7 @@ class PlanModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'documentID': documentID,
-      'destinationId': destinationID,
+      'destinationID': destinationID,
       'travelDate': travelDate,
     };
   }

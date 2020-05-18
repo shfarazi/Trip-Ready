@@ -25,8 +25,7 @@ class ActivityModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'documentID': documentID,
-      'imgaeUrl': imageUrl,
+      'imageUrl': imageUrl,
       'name': name,
       'type': type,
       'category': category,
