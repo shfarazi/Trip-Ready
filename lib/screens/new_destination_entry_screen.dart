@@ -19,7 +19,7 @@ class _NewDestinationEntryScreenState extends State<NewDestinationEntryScreen> {
 
   Widget buildPickerItem(DocumentSnapshot snapshot)
   {
-    var destination = Destination.fromSnapshot(snapshot);
+    var destination = DestinationModel.fromSnapshot(snapshot);
 
     return Text(
           '${destination.country}: ${destination.city}',

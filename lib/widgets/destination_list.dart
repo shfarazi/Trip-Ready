@@ -19,7 +19,7 @@ class DestinationList extends StatelessWidget {
                 itemCount: snapshot.data.documents.length,
                 itemBuilder: (BuildContext context, int index) {
                   var snapshotItem = snapshot.data.documents[index];
-                  var destination = Destination.fromSnapshot(snapshotItem);
+                  var destination = DestinationModel.fromSnapshot(snapshotItem);
 
                   return buildListViewRow(context, destination);
                 },
@@ -38,7 +38,7 @@ class DestinationList extends StatelessWidget {
   }
 
   GestureDetector buildListViewRow(
-      BuildContext context, Destination destination) {
+      BuildContext context, DestinationModel destination) {
     return GestureDetector(
       onTap: () => Navigator.push(
         context,

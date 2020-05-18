@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 class SitesFoodDetailScreen extends StatefulWidget {
   static const routeName = 'sites_food_detail_screen';
-  final Activity activity;
-  final Destination destination;
+  final ActivityModel activity;
+  final DestinationModel destination;
 
   SitesFoodDetailScreen({this.activity, this.destination});
 
@@ -48,7 +48,7 @@ class _SitesFoodDetailScreenState extends State<SitesFoodDetailScreen> {
                 itemBuilder: (BuildContext context, int index) {
 
                   var snapshotItem = snapshot.data.documents[index];
-                  var activity = Activity.fromSnapshot(snapshotItem);
+                  var activity = ActivityModel.fromSnapshot(snapshotItem);
 
                   return buildStack(activity, context);
                 },
@@ -58,7 +58,7 @@ class _SitesFoodDetailScreenState extends State<SitesFoodDetailScreen> {
         );
   }
 
-  Stack buildStack(Activity activity, BuildContext context) {
+  Stack buildStack(ActivityModel activity, BuildContext context) {
     return Stack(
       children: [
         Container(

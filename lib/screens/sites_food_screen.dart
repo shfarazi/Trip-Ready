@@ -10,7 +10,7 @@ class Post {
 
 class SitesFoodScreen extends StatefulWidget {
   static const routeName = 'sites_food_screen';
-  final Destination destination;
+  final DestinationModel destination;
 
   SitesFoodScreen({this.destination});
 
