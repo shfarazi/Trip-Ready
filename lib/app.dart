@@ -35,7 +35,7 @@ class App extends StatelessWidget {
           primaryColor: Colors.white
         ),
       routes: App.routes,
-      initialRoute: MainLandingScreen.routeName,
+      initialRoute: MainScreen.routeName,
     );
   }
 }

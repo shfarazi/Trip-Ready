@@ -37,3 +37,8 @@ class ActivityModel {
   }
 }
 
+class ActivityCategories {
+  static String sites = 'Sites';
+  static String food = 'Food';
+  static String favorites = 'Favorites';
+}

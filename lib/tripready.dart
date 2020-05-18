@@ -1,4 +1,7 @@
 export 'app.dart';
+
+export 'services/authentication_service.dart';
+
 export 'widgets/capstone_scaffold.dart';
 
 export 'widgets/logo.dart';
@@ -30,4 +33,5 @@ export 'screens/sites_food_detail_screen.dart';
 export 'widgets/destination_list.dart';
 export 'widgets/image_header.dart';
 export 'widgets/sites_food_list.dart';
+export 'widgets/photo_listview_tile.dart';
 
