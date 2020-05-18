@@ -9,8 +9,8 @@ class SitesFoodList extends StatelessWidget {
   const SitesFoodList({Key key, this.destination, this.category})
       : super(key: key);
 
-  Future<QuerySnapshot> getFavorites() {
-    var uid = AuthenticationService.currentUserId;
+  Future<QuerySnapshot> getFavorites() async {
+    var uid = await AuthenticationService.currentUserId();
 
     return Firestore.instance
         .collection('users')
