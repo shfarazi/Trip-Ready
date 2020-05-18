@@ -2,7 +2,6 @@ import 'package:capstone/tripready.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-
 class SitesFoodDetailScreen extends StatefulWidget {
   static const routeName = 'sites_food_detail_screen';
   final ActivityModel activity;
@@ -30,7 +29,8 @@ class _SitesFoodDetailScreenState extends State<SitesFoodDetailScreen> {
       title: '${this.widget.activity.category}',
       child: Column(
         children: [
-          ImageHeader(imageUrl: widget.activity.imageUrl, label: widget.activity.name),
+          ImageHeader(
+              imageUrl: widget.activity.imageUrl, label: widget.activity.name),
           buildBody(),
         ],
       ),
@@ -39,23 +39,31 @@ class _SitesFoodDetailScreenState extends State<SitesFoodDetailScreen> {
 
   Widget buildBody() {
     return Expanded(
-          child: StreamBuilder(
-            stream: Firestore.instance.collection('activity').orderBy('name').snapshots(),
-            builder: (context, snapshot) {
+      child: StreamBuilder(
+          stream: Firestore.instance
+              .collection('activity')
+              .orderBy('name')
+              .snapshots(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData && snapshot.data.documents.length > 0) {
               return ListView.builder(
                 padding: EdgeInsets.only(top: 10.0, bottom: 15.0),
                 itemCount: snapshot.data.documents.length,
                 itemBuilder: (BuildContext context, int index) {
-
                   var snapshotItem = snapshot.data.documents[index];
                   var activity = ActivityModel.fromSnapshot(snapshotItem);
 
                   return buildStack(activity, context);
                 },
               );
+            } else {
+              return Center(
+                  child: Column(children: [
+                Text('No items. Please click the button below')
+              ]));
             }
-          ),
-        );
+          }),
+    );
   }
 
   Stack buildStack(ActivityModel activity, BuildContext context) {

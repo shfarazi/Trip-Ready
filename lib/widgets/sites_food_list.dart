@@ -7,7 +7,8 @@ class SitesFoodList extends StatelessWidget {
   final DestinationModel destination;
   final String category;
 
-  const SitesFoodList({Key key, this.destination, this.category}) : super(key: key);
+  const SitesFoodList({Key key, this.destination, this.category})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +38,6 @@ class SitesFoodList extends StatelessWidget {
             } else {
               return Center(
                   child: Column(children: [
-                Padding(
-                    child: CircularProgressIndicator(),
-                    padding: EdgeInsets.all(50)),
                 Text('No items. Please click the button below')
               ]));
             }
