@@ -3,13 +3,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone/tripready.dart';
 
-class SitesFoodList extends StatelessWidget {
+class SitesFoodList extends StatefulWidget {
   final DestinationModel destination;
   final String category;
 
   const SitesFoodList({Key key, this.destination, this.category})
       : super(key: key);
 
+  @override
+  _SitesFoodListState createState() => _SitesFoodListState();
+}
+
+class _SitesFoodListState extends State<SitesFoodList> {
   Future<QuerySnapshot> getFavorites() async {
     var uid = await AuthenticationService.currentUserId();
 
@@ -17,7 +22,7 @@ class SitesFoodList extends StatelessWidget {
         .collection('users')
         .document(uid)
         .collection('destinations')
-        .document(destination.documentID)
+        .document(widget.destination.documentID)
         .collection('favorites')
         .getDocuments();
   }
@@ -33,7 +38,7 @@ class SitesFoodList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var destinationId = this.destination.documentID;
+    var destinationId = this.widget.destination.documentID;
 
     var stream = buildQueryStream(destinationId);
 
@@ -61,8 +66,8 @@ class SitesFoodList extends StatelessWidget {
                                 element.documentID == activity.documentID);
                       }
 
-                      var showTile = category == ActivityCategories.favorites && isFavorite || 
-                                     activity.category == category;
+                      var showTile = widget.category == ActivityCategories.favorites && isFavorite || 
+                                     activity.category == widget.category;
 
                       return Visibility(
                         visible: showTile,
@@ -72,10 +77,13 @@ class SitesFoodList extends StatelessWidget {
                             subtitle: activity.type,
                             imageUrl: activity.imageUrl,
                             isFavorite: isFavorite,
-                            onFavorite: () => FavoritesService.toggleFavorite(destination.documentID, activity.documentID),
+                            onFavorite: () async { 
+                              await FavoritesService.toggleFavorite(widget.destination.documentID, activity.documentID);
+                              setState(() {});
+                            },
                             route: MaterialPageRoute(
                               builder: (_) => SitesFoodDetailScreen(
-                                destination: destination,
+                                destination: widget.destination,
                                 activity: activity,
                               ),
                             )),

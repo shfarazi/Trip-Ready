@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FavoritesService
 {
-  static toggleFavorite(String destinationId, String activityId) async {
+  static Future toggleFavorite(String destinationId, String activityId) async {
     var userId = await AuthenticationService.currentUserId(); 
 
     var collectionReference = Firestore.instance
